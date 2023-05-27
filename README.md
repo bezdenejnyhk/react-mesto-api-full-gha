@@ -4,11 +4,11 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/bezdenejnyhk/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
-IP-адрес 51.250.64.49
+IP-адрес IPv4 51.250.64.49
 
 Frontend https://domainname.students.nomoredomains.rocks
 
