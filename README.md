@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес IPv4 158.160.48.84
+IP-адрес IPv4 158.160.110.100
 
 Frontend https://domainname.students.nomoredomains.rocks
 
