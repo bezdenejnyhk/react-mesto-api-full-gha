@@ -4,10 +4,10 @@ const allowedCors = [
   'https://localhost:3000',
   'http://localhost:3005',
   'https://localhost:3005',
-  'http://api.mesto-kuskova.nomoredomains.monster',
-  'https://api.mesto-kuskova.nomoredomains.monster',
-  'http://mesto-kuskova.nomoredomains.monster',
-  'https://mesto-kuskova.nomoredomains.monster',
+  'http://api.domainname.students.nomoredomains.rocks',
+  'https://api.domainname.students.nomoredomains.rocks',
+  'http://domainname.students.nomoredomains.rocks',
+  'https://domainname.students.nomoredomains.rocks',
 ];
 
 module.exports = (req, res, next) => {
