@@ -19,7 +19,7 @@ const corsOptions = {
     'http://domainname.students.nomoredomains.rocks'
   ],
   optionsSuccessStatus: 200,
-  Credentials: true,
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
