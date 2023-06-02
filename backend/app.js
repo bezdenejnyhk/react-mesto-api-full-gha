@@ -11,7 +11,18 @@ const app = express();
 
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 
-app.use(cors);
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://domainname.students.nomoredomains.rocks',
+    'http://domainname.students.nomoredomains.rocks'
+  ],
+  optionsSuccessStatus: 200,
+  Credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
