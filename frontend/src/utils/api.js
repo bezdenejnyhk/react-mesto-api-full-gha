@@ -3,10 +3,6 @@ class Api {
       this._baseUrl = baseUrl;
       this._headers = headers;
     }
-
-    setToken(token) {
-      this._headers.authorization = `Bearer ${token}`;
-    }
   
     _parseResponse(res) {
       if (res.ok) {
@@ -91,7 +87,7 @@ class Api {
 const api = new Api({
   baseUrl: 'https://api.domainname.students.nomoredomains.rocks',
   headers: {
-    authorization: 'f05e4160-c2c1-4ea1-b5bc-d6763b6bef6d',
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
   }
 });
