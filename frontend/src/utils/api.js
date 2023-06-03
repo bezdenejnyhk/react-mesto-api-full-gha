@@ -3,6 +3,10 @@ class Api {
       this._baseUrl = baseUrl;
       this._headers = headers;
     }
+
+    setToken(token) {
+      this._headers.authorization = `Bearer ${token}`;
+    }
   
     _parseResponse(res) {
       if (res.ok) {
