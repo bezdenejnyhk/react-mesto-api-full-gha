@@ -40,9 +40,10 @@ function App() {
     React.useEffect(() => {
         isLoggedIn &&
             Promise.all([api.getUserInfo(), api.getInitialCards()])
-                .then(([userData, initialCards]) => {
+                .then(([userData, cards]) => {
                     setCurrentUser(userData);
-                    setCards(initialCards);
+                    setCards(cards);
+                    console.log(cards)
                 })
                 .catch((err) => {
                     console.log(`Ошибка: ${err}`);
