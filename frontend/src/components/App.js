@@ -33,7 +33,7 @@ function App() {
     const api = new Api({
         baseUrl: 'https://api.domainname.students.nomoredomains.rocks',
         headers: {
-          authorization: `Bearer ${localStorage.getItem('jwt')}`,
+          authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json'
         }
       });
