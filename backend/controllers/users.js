@@ -65,7 +65,7 @@ const getMe = (req, res, next) => {
         next(new NotFoundError('Пользователь по указанному _id не найден'));
         return;
       }
-      res.send({ user });
+      res.send(user);
     })
     .catch(next);
 };
@@ -80,7 +80,7 @@ const getUserById = (req, res, next) => {
         );
         return;
       }
-      res.send({ user });
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -103,7 +103,7 @@ const editProfile = (req, res, next) => {
         next(new NotFoundError('Пользователь по указанному _id не найден'));
         return;
       }
-      res.send({ user });
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -128,7 +128,7 @@ const updateAvatar = (req, res, next) => {
         next(new NotFoundError('Пользователь по указанному _id не найден'));
         return;
       }
-      res.send({ user });
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {

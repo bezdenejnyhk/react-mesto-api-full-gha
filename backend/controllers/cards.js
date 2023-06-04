@@ -1,6 +1,6 @@
 const Card = require('../models/card');
 const { NotFoundError, ValidationError, ForbiddenError } = require('../errors');
-const { handleSucsessResponse } = require('../utils/handleSucsessResponse');
+// const { handleSucsessResponse } = require('../utils/handleSucsessResponse');
 
 const createCard = (req, res, next) => {
   const { name, link } = req.body;
@@ -25,24 +25,52 @@ const getCards = (req, res, next) => {
     .catch(next);
 };
 
+// const deleteCard = (req, res, next) => {
+//   const { cardId } = req.params;
+//   Card.findById(cardId)
+//     .then((card) => {
+//       if (!card) {
+//         throw new NotFoundError('Пользователь по указанному _id не найден');
+//       } else if (card.owner.toString() !== req.user._id) {
+//         throw new ForbiddenError('Чужую карточку удалить нельзя');
+//       } else {
+//         return Card.deleteOne(card)
+//           .then(() => res.send(card));
+//       }
+//     })
+//     .catch((err) => {
+//       if (err.name === 'CastError') {
+//         return next(new ValidationError('Переданы некорректные данные '));
+//       }
+//       return next(err);
+//     });
+// };
+
 const deleteCard = (req, res, next) => {
   const { cardId } = req.params;
   Card.findById(cardId)
     .then((card) => {
       if (!card) {
         throw new NotFoundError('Пользователь по указанному _id не найден');
-      } else if (card.owner.toString() !== req.user._id) {
-        throw new ForbiddenError('Чужую карточку удалить нельзя');
       } else {
-        return Card.deleteOne({ _id: cardId })
-          .then((data) => { handleSucsessResponse(res, 200, data); });
+        const owner = card.owner.toString();
+        if (req.user._id === owner) {
+          Card.deleteOne(card).then(() => {
+            res.send(card);
+          });
+          return;
+        }
+        next(new ForbiddenError('Чужие карточки удалить нельзя!'));
       }
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        return next(new ValidationError('Переданы некорректные данные '));
+        next(
+          new ValidationError('Переданы некорректные данные для удаления карточки.'),
+        );
+        return;
       }
-      return next(err);
+      next(err);
     });
 };
 
@@ -52,11 +80,12 @@ const likeCard = (req, res, next) => {
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         next(new NotFoundError('Карточка с указанным _id не найдена.'));
       } else {
-        res.send({ card });
+        res.send(card);
       }
     })
     .catch((err) => {
@@ -76,11 +105,12 @@ const dislikeCard = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         next(new NotFoundError('Карточка с указанным _id не найдена.'));
       } else {
-        res.send({ card });
+        res.send(card);
       }
     })
     .catch((err) => {
