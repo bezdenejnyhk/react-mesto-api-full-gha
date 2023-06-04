@@ -3,7 +3,6 @@ import { Route, Navigate, useNavigate, Routes } from 'react-router-dom';
 import Main from "./Main.js";
 import Footer from "./Footer.js";
 import ImagePopup from "./ImagePopup.js";
-import api from "../utils/api.js"
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js"
@@ -33,8 +32,8 @@ function App() {
     const api = new Api({
         baseUrl: 'https://api.domainname.students.nomoredomains.rocks',
         headers: {
-          authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
 
