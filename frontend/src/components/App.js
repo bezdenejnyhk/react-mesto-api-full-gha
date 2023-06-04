@@ -40,10 +40,10 @@ function App() {
     React.useEffect(() => {
         isLoggedIn &&
             Promise.all([api.getUserInfo(), api.getInitialCards()])
-                .then(([userData, cards]) => {
+                .then(([userData, initialCards]) => {
                     setCurrentUser(userData);
-                    setCards(cards);
-                    console.log(cards)
+                    setCards(initialCards);
+                    console.log(initialCards)
                 })
                 .catch((err) => {
                     console.log(`Ошибка: ${err}`);
@@ -156,7 +156,7 @@ function App() {
                 .then((res) => {
                     setIsLoggedIn(true);
                     navigate("/");
-                    setEmail(res.data.email);
+                    setEmail(res.email);
                 })
                 .catch(console.error);
         }

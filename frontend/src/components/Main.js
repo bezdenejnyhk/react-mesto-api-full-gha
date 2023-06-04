@@ -40,7 +40,7 @@ const Main = ({ onEditAvatar, onEditProfile, onAddPlace, cards, onCardClick, onC
           <button className="profile__add" type="button" onClick={onAddPlace}></button>
         </section>
         <section className="cards">
-          {cards.map((card) => (
+          {cards?.map((card) => (
             <Card
               card={card}
               key={card._id}
