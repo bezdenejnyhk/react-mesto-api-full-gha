@@ -84,12 +84,4 @@ class Api {
     }
 }
 
-const api = new Api({
-  baseUrl: 'https://api.domainname.students.nomoredomains.rocks',
-  headers: {
-    authorization: `Bearer ${localStorage.getItem('jwt')}`,
-    'Content-Type': 'application/json'
-  }
-});
-
-export default api;
+export default Api;

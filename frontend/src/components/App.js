@@ -14,6 +14,7 @@ import Register from './Register.js';
 import InfoTooltip from './InfoTooltip.js';
 import ProtectedRoute from './ProtectedRoute.js';
 import * as auth from '../utils/auth';
+import Api from "../utils/api.js";
 
 function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -28,6 +29,14 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
     const [email, setEmail] = React.useState("");
     const navigate = useNavigate();
+
+    const api = new Api({
+        baseUrl: 'https://api.domainname.students.nomoredomains.rocks',
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('jwt')}`,
+          'Content-Type': 'application/json'
+        }
+      });
 
     React.useEffect(() => {
         isLoggedIn &&
