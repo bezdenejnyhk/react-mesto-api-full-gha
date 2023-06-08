@@ -138,8 +138,8 @@ function App() {
     // Обработчик добавления карточки
     function handleAddPlaceSubmit(data) {
         api.addCard(data)
-            .then((card) => {
-                setCards((cards) => [card, ...cards]);
+            .then((res) => {
+                setCards((cards) => [res.card, ...cards]);
                 closeAllPopups()
             })
             .catch((err) => {
